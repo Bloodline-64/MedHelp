@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#070c15" />
+    <meta
+      name="description"
+      content="Scan a wound, document, label, plant or object, or ask any question with a photo, and get clear, practical AI help."
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Scan &amp; Help" />
+    <script>
+      // Apply the saved theme before the first paint so there is no flash.
+      ;(function () {
+        try {
+          var key = 'sh.theme.v1'
+          var choice = localStorage.getItem(key) || 'system'
+          if (choice !== 'light' && choice !== 'dark' && choice !== 'system') choice = 'system'
+          var query = window.matchMedia('(prefers-color-scheme: light)')
+          var resolved = choice === 'system' ? (query.matches ? 'light' : 'dark') : choice
+          var root = document.documentElement
+          root.dataset.theme = resolved
+          root.dataset.themeChoice = choice
+          root.style.colorScheme = resolved
+          var meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) meta.setAttribute('content', resolved === 'light' ? '#f2f5fa' : '#070c15')
+          var apple = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
+          if (apple) apple.setAttribute('content', resolved === 'light' ? 'default' : 'black-translucent')
+        } catch (error) {
+          // Without storage the app simply starts in the dark theme.
+        }
+      })()
+    </script>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <title>Scan &amp; Help</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
