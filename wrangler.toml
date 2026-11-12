@@ -1,0 +1,8 @@
+name = "scan-and-help"
+compatibility_date = "2026-01-01"
+
+# Deploy the built app as static assets.
+# This is what Cloudflare runs on every build: `npx wrangler deploy`.
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
