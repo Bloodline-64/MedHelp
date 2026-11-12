@@ -1,9 +1,0 @@
-node_modules
-dist
-.wrangler
-*.local
-.env
-.env.*
-*.log
-*.zip
-.DS_Store
